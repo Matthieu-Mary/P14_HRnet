@@ -38,7 +38,18 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(employee);
+    localStorage.setItem("employee", JSON.stringify(employee))
+    setEmployee({
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      startDate: "",
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      department: "",
+    })
   };
 
   return (
