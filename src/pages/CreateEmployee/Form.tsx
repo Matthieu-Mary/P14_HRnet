@@ -1,19 +1,12 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useContext } from "react";
 import states from "../../data/states";
-
-type Employee = {
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  startDate: string;
-  street: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  department: string;
-};
+import { employeeContext, Employee } from "../../context/employeesContext";
 
 const Form = () => {
+  const { state, dispatch } = useContext(employeeContext)
+
+  console.log(state)
+
   const [employee, setEmployee] = useState<Employee>({
     firstName: "",
     lastName: "",
@@ -25,6 +18,7 @@ const Form = () => {
     zipCode: "",
     department: "",
   });
+
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -38,7 +32,11 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    localStorage.setItem("employee", JSON.stringify(employee))
+    dispatch({
+      type: "ADD_EMPLOYEE",
+      payload: employee
+    });
+    // localStorage.setItem("employee", JSON.stringify(state.employees))
     setEmployee({
       firstName: "",
       lastName: "",
