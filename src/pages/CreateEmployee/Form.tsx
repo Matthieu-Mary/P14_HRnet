@@ -5,8 +5,6 @@ import { employeeContext, Employee } from "../../context/employeesContext";
 const Form = () => {
   const { state, dispatch } = useContext(employeeContext)
 
-  console.log(state)
-
   const [employee, setEmployee] = useState<Employee>({
     firstName: "",
     lastName: "",
@@ -32,11 +30,11 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(state);
     dispatch({
       type: "ADD_EMPLOYEE",
       payload: employee
     });
-    // localStorage.setItem("employee", JSON.stringify(state.employees))
     setEmployee({
       firstName: "",
       lastName: "",

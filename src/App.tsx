@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateEmployee from "./pages/CreateEmployee/CreateEmployee";
-import CurrentEmployees from "./pages/CurrentEmployees";
+import CurrentEmployees from "./pages/CurrentEmployees/CurrentEmployees";
 import { useReducer } from "react";
 import {
   employeeContext,
