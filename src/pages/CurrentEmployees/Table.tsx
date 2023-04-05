@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { employeeContext } from "../../context/employeesContext";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -14,7 +14,6 @@ function Table() {
       })
     ),
   ];
-  console.log(employeesArr);
 
   const columns = [
     { headerName: "First Name", field: "firstName", width: 100 },

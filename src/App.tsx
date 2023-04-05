@@ -7,6 +7,8 @@ import {
   employeeReducer,
   initialState,
 } from "./context/employeesContext";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 function App() {
   const [state, dispatch] = useReducer(employeeReducer, initialState);
@@ -14,12 +16,14 @@ function App() {
   return (
     <BrowserRouter>
       <employeeContext.Provider value={{ state, dispatch }}>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<CreateEmployee />}></Route>
-            <Route path="/employees" element={<CurrentEmployees />}></Route>
-          </Routes>
-        </div>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<CreateEmployee />}></Route>
+              <Route path="/employees" element={<CurrentEmployees />}></Route>
+            </Routes>
+          </div>
+        </LocalizationProvider>
       </employeeContext.Provider>
     </BrowserRouter>
   );

@@ -3,8 +3,8 @@ import { createContext } from "react";
 export type Employee = {
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
-  startDate: string;
+  dateOfBirth: Date|null;
+  startDate: Date|null;
   street: string;
   city: string;
   state: string;
@@ -35,7 +35,7 @@ export const employeeReducer = (state: State, action: any) => {
       return {
         ...state,
         employees: [...state.employees, action.payload],
-      };
+      }
       default:
         return state;
   }

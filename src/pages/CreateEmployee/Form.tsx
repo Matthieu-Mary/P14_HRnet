@@ -1,22 +1,23 @@
 import { FormEvent, useState, useContext } from "react";
 import states from "../../data/states";
 import { employeeContext, Employee } from "../../context/employeesContext";
+import DatePickerMui from "../../components/DatePickerMui";
 
 const Form = () => {
-  const { state, dispatch } = useContext(employeeContext)
+  const { state, dispatch } = useContext(employeeContext);
+  const { employees } = state;
 
   const [employee, setEmployee] = useState<Employee>({
     firstName: "",
     lastName: "",
-    dateOfBirth: "",
-    startDate: "",
+    dateOfBirth: null,
+    startDate: null,
     street: "",
     city: "",
     state: "",
     zipCode: "",
     department: "",
   });
-
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -30,22 +31,22 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(state);
     dispatch({
       type: "ADD_EMPLOYEE",
-      payload: employee
+      payload: employee,
     });
+    localStorage.setItem("employees", JSON.stringify(employees));
     setEmployee({
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
-      startDate: "",
+      dateOfBirth: null,
+      startDate: null,
       street: "",
       city: "",
       state: "",
       zipCode: "",
       department: "",
-    })
+    });
   };
 
   return (
@@ -77,24 +78,12 @@ const Form = () => {
 
         <div className="dates-container">
           <div className="birth-date">
-            <label htmlFor="date-of-birth">Date of Birth</label>
-            <input
-              id="date-of-birth"
-              type="text"
-              name="dateOfBirth"
-              value={employee.dateOfBirth}
-              onChange={(e) => handleChange(e)}
-            />
+            <label>Date of birth</label>
+            <DatePickerMui value={employee.dateOfBirth} onChange={(date) => setEmployee((prev) => ({...prev, dateOfBirth: date}))}/>
           </div>
           <div className="start-date">
-            <label htmlFor="start-date">Start Date</label>
-            <input
-              id="start-date"
-              type="text"
-              name="startDate"
-              value={employee.startDate}
-              onChange={(e) => handleChange(e)}
-            />
+            <label>Start Date</label>
+            <DatePickerMui value={employee.startDate} onChange={(date) => setEmployee((prev) => ({...prev, startDate: date}))}/>
           </div>
         </div>
 
