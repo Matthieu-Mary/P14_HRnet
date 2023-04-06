@@ -9,7 +9,6 @@ type Props = {
 
 const Form = ({ onSubmit }: Props) => {
   const { state, dispatch } = useContext(employeeContext);
-  const { employees } = state;
 
   const [employee, setEmployee] = useState<Employee>({
     firstName: "",
