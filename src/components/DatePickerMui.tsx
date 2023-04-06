@@ -7,12 +7,13 @@ type Props = {
 }
 
 function DatePickerMui({value, onChange}:Props) {
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = (date: Date | null ) => {
     onChange(date)
   }
+
   return (
-    <Stack spacing={4} >
-      <DatePicker value={value} onChange={handleDateChange}  />
+    <Stack spacing={4}>
+      <DatePicker value={value} onChange={handleDateChange} />
     </Stack>
   )
 }

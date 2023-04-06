@@ -3,7 +3,11 @@ import states from "../../data/states";
 import { employeeContext, Employee } from "../../context/employeesContext";
 import DatePickerMui from "../../components/DatePickerMui";
 
-const Form = () => {
+type Props = {
+  onSubmit: (employee: Employee) => void;
+};
+
+const Form = ({ onSubmit }: Props) => {
   const { state, dispatch } = useContext(employeeContext);
   const { employees } = state;
 
@@ -14,9 +18,9 @@ const Form = () => {
     startDate: null,
     street: "",
     city: "",
-    state: "",
+    state: "Alabama",
     zipCode: "",
-    department: "",
+    department: "Sales",
   });
 
   const handleChange = (
@@ -31,6 +35,7 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    onSubmit(employee)
     dispatch({
       type: "ADD_EMPLOYEE",
       payload: employee,
@@ -43,9 +48,9 @@ const Form = () => {
       startDate: null,
       street: "",
       city: "",
-      state: "",
+      state: "Alabama",
       zipCode: "",
-      department: "",
+      department: "Sales",
     });
   };
 
@@ -164,6 +169,7 @@ const Form = () => {
             id="department"
             value={employee.department}
             onChange={(e) => handleChange(e)}
+            required
           >
             <option>Sales</option>
             <option>Marketing</option>
