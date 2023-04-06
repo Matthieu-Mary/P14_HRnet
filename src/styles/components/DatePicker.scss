@@ -1,0 +1,24 @@
+.MuiStack-root {
+    display: flex;
+    justify-content: space-between;
+  .MuiFormControl-root {
+    .MuiInputBase-root {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 350px;
+      button {
+        color: var(--medium-green);
+      }
+      input {
+        width: 350px;
+        margin-top: 4px;
+        margin-left: 12px;
+    }
+    fieldset {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

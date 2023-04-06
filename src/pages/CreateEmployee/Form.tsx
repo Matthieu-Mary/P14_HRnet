@@ -61,6 +61,7 @@ const Form = () => {
               name="firstName"
               value={employee.firstName}
               onChange={(e) => handleChange(e)}
+              required
             />
           </div>
 
@@ -72,64 +73,89 @@ const Form = () => {
               name="lastName"
               value={employee.lastName}
               onChange={(e) => handleChange(e)}
+              required
             />
           </div>
         </div>
 
-        <div className="dates-container">
-          <div className="birth-date">
-            <label>Date of birth</label>
-            <DatePickerMui value={employee.dateOfBirth} onChange={(date) => setEmployee((prev) => ({...prev, dateOfBirth: date}))}/>
-          </div>
-          <div className="start-date">
-            <label>Start Date</label>
-            <DatePickerMui value={employee.startDate} onChange={(date) => setEmployee((prev) => ({...prev, startDate: date}))}/>
-          </div>
+        <div className="birth-date">
+          <label>Date of birth</label>
+          <DatePickerMui
+            value={employee.dateOfBirth}
+            onChange={(date) =>
+              setEmployee((prev) => ({ ...prev, dateOfBirth: date }))
+            }
+          />
+        </div>
+        <div className="start-date">
+          <label>Start Date</label>
+          <DatePickerMui
+            value={employee.startDate}
+            onChange={(date) =>
+              setEmployee((prev) => ({ ...prev, startDate: date }))
+            }
+          />
         </div>
 
         <fieldset className="address">
           <legend>Address</legend>
 
-          <label htmlFor="street">Street</label>
-          <input
-            id="street"
-            type="text"
-            name="street"
-            value={employee.street}
-            onChange={(e) => handleChange(e)}
-          />
+          <div className="container-SC">
+            <div className="street">
+              <label htmlFor="street">Street</label>
+              <input
+                id="street"
+                type="text"
+                name="street"
+                value={employee.street}
+                onChange={(e) => handleChange(e)}
+                required
+              />
+            </div>
 
-          <label htmlFor="city">City</label>
-          <input
-            id="city"
-            type="text"
-            name="city"
-            value={employee.city}
-            onChange={(e) => handleChange(e)}
-          />
+            <div className="city">
+              <label htmlFor="city">City</label>
+              <input
+                id="city"
+                type="text"
+                name="city"
+                value={employee.city}
+                onChange={(e) => handleChange(e)}
+                required
+              />
+            </div>
+          </div>
 
-          <label htmlFor="state">State</label>
-          <select
-            name="state"
-            id="state"
-            value={employee.state}
-            onChange={(e) => handleChange(e)}
-          >
-            {states.map((state) => (
-              <option value={state.abbreviation} key={state.abbreviation}>
-                {state.name}
-              </option>
-            ))}
-          </select>
+          <div className="container-SZ">
+            <div className="state">
+              <label htmlFor="state">State</label>
+              <select
+                name="state"
+                id="state"
+                value={employee.state}
+                onChange={(e) => handleChange(e)}
+                required
+              >
+                {states.map((state) => (
+                  <option value={state.abbreviation} key={state.abbreviation}>
+                    {state.name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          <label htmlFor="zip-code">Zip Code</label>
-          <input
-            id="zip-code"
-            type="number"
-            name="zipCode"
-            value={employee.zipCode}
-            onChange={(e) => handleChange(e)}
-          />
+            <div className="zip">
+              <label htmlFor="zip-code">Zip Code</label>
+              <input
+                id="zip-code"
+                type="number"
+                name="zipCode"
+                value={employee.zipCode}
+                onChange={(e) => handleChange(e)}
+                required
+              />
+            </div>
+          </div>
         </fieldset>
         <div className="departments">
           <label htmlFor="department">Department</label>
@@ -146,7 +172,7 @@ const Form = () => {
             <option>Legal</option>
           </select>
         </div>
-        <button>Save</button>
+        <button className="save-btn">Save</button>
       </form>
     </div>
   );

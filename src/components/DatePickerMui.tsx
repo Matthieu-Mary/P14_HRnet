@@ -11,7 +11,7 @@ function DatePickerMui({value, onChange}:Props) {
     onChange(date)
   }
   return (
-    <Stack spacing={4} sx={{ width: "250px" }}>
+    <Stack spacing={4} >
       <DatePicker value={value} onChange={handleDateChange}  />
     </Stack>
   )
