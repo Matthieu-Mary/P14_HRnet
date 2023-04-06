@@ -3,8 +3,8 @@ import { createContext } from "react";
 export type Employee = {
   firstName: string;
   lastName: string;
-  dateOfBirth: Date|null;
-  startDate: Date|null;
+  dateOfBirth: Date | null;
+  startDate: Date | null;
   street: string;
   city: string;
   state: string;
@@ -17,7 +17,9 @@ export type State = {
 };
 
 export const initialState: State = {
-  employees: [],
+  employees: localStorage.getItem("employees")
+    ? JSON.parse(localStorage.getItem("employees") || "")
+    : [],
 };
 
 export const employeeContext = createContext<{
@@ -28,15 +30,16 @@ export const employeeContext = createContext<{
   dispatch: () => null,
 });
 
-
 export const employeeReducer = (state: State, action: any) => {
-  switch(action.type) {
-    case 'ADD_EMPLOYEE':
-      return {
+  switch (action.type) {
+    case "ADD_EMPLOYEE":
+      const newState = {
         ...state,
         employees: [...state.employees, action.payload],
-      }
-      default:
-        return state;
+      };
+      localStorage.setItem("employees", JSON.stringify(newState.employees));
+      return newState;
+    default:
+      return state;
   }
-}
+};

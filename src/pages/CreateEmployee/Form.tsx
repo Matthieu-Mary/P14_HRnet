@@ -40,7 +40,6 @@ const Form = ({ onSubmit }: Props) => {
       type: "ADD_EMPLOYEE",
       payload: employee,
     });
-    localStorage.setItem("employees", JSON.stringify(employees));
     setEmployee({
       firstName: "",
       lastName: "",
