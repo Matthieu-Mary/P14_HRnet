@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 export type Employee = {
   firstName: string;
@@ -17,12 +17,10 @@ export type State = {
 };
 
 export const initialState: State = {
-  employees: localStorage.getItem("employees")
-    ? JSON.parse(localStorage.getItem("employees") || "")
-    : [],
+  employees: [],
 };
 
-export const employeeContext = createContext<{
+export const EmployeeContext = createContext<{
   state: State;
   dispatch: React.Dispatch<any>;
 }>({
@@ -39,7 +37,34 @@ export const employeeReducer = (state: State, action: any) => {
       };
       localStorage.setItem("employees", JSON.stringify(newState.employees));
       return newState;
+    case "SET_EMPLOYEES":
+      return {
+        ...state,
+        employees: action.payload,
+      };
     default:
       return state;
   }
+};
+
+type Props = {
+  children: React.ReactNode;
+};
+
+export const EmployeeProvider: React.FC<Props> = ({ children }) => {
+  const [state, dispatch] = useReducer(employeeReducer, initialState);
+
+  useEffect(() => {
+    const storedEmployees = localStorage.getItem("employees");
+    if (storedEmployees) {
+      const parsedEmployees = JSON.parse(storedEmployees) as Employee[];
+      dispatch({ type: "SET_EMPLOYEES", payload: parsedEmployees });
+    }
+  }, []);
+
+  return (
+    <EmployeeContext.Provider value={{ state, dispatch }}>
+      {children}
+    </EmployeeContext.Provider>
+  );
 };

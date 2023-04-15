@@ -3,19 +3,19 @@ import CreateEmployee from "./pages/CreateEmployee/CreateEmployee";
 import CurrentEmployees from "./pages/CurrentEmployees/CurrentEmployees";
 import { useReducer } from "react";
 import {
-  employeeContext,
+  EmployeeContext,
+  EmployeeProvider,
   employeeReducer,
   initialState,
-} from "./context/employeesContext";
+} from "./context/EmployeesContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 function App() {
-  const [state, dispatch] = useReducer(employeeReducer, initialState);
 
   return (
     <BrowserRouter>
-      <employeeContext.Provider value={{ state, dispatch }}>
+      <EmployeeProvider>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <div className="App">
             <Routes>
@@ -24,7 +24,7 @@ function App() {
             </Routes>
           </div>
         </LocalizationProvider>
-      </employeeContext.Provider>
+      </EmployeeProvider>
     </BrowserRouter>
   );
 }

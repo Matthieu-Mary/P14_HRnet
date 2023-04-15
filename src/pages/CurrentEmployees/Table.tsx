@@ -1,20 +1,22 @@
 import { useContext } from "react";
-import { employeeContext } from "../../context/employeesContext";
+import { EmployeeContext } from "../../context/EmployeesContext";
 import { DataGrid } from "@mui/x-data-grid";
 
 function Table() {
-  const { state, dispatch } = useContext(employeeContext);
-  
+  const { state, dispatch } = useContext(EmployeeContext);
+
   const { employees } = state;
-  
+
+  console.log(employees)
+
   const employeesArr = [
     ...new Set(
       employees.map((employee, index) => {
         return { ...employee, id: index };
       })
-      ),
-    ];
-    
+    ),
+  ];
+
   const columns = [
     { headerName: "First Name", field: "firstName", width: 100 },
     { headerName: "Last Name", field: "lastName", width: 100 },
@@ -28,12 +30,12 @@ function Table() {
   ];
 
   return (
-    <div className="data-grid-container">
+    <div className="data-grid-container" data-testid='container-table'>
       <DataGrid
         columns={columns}
         rows={employeesArr}
         getRowId={(row) => row.id}
-        autoHeight  
+        autoHeight
         pageSizeOptions={[5, 10, 25, 50, 100]}
       />
     </div>

@@ -1,6 +1,6 @@
 import { FormEvent, useState, useContext } from "react";
 import states from "../../data/states";
-import { employeeContext, Employee } from "../../context/employeesContext";
+import { EmployeeContext, Employee } from "../../context/EmployeesContext";
 import DatePickerMui from "../../components/DatePickerMui";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Form = ({ onSubmit }: Props) => {
-  const { state, dispatch } = useContext(employeeContext);
+  const { state, dispatch } = useContext(EmployeeContext);
 
   const [employee, setEmployee] = useState<Employee>({
     firstName: "",
@@ -34,7 +34,7 @@ const Form = ({ onSubmit }: Props) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(employee)
+    onSubmit(employee);
     dispatch({
       type: "ADD_EMPLOYEE",
       payload: employee,
@@ -82,7 +82,7 @@ const Form = ({ onSubmit }: Props) => {
         </div>
 
         <div className="birth-date">
-          <label>Date of birth</label>
+          <label htmlFor="birth">Date of birth</label>
           <DatePickerMui
             value={employee.dateOfBirth}
             onChange={(date) =>
@@ -91,7 +91,7 @@ const Form = ({ onSubmit }: Props) => {
           />
         </div>
         <div className="start-date">
-          <label>Start Date</label>
+          <label htmlFor="start">Start Date</label>
           <DatePickerMui
             value={employee.startDate}
             onChange={(date) =>
