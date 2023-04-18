@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { EmployeeContext } from "../../context/EmployeesContext";
 import { DataGrid } from "@mui/x-data-grid";
+import SearchBar from "../../components/SearchBar";
 
 function Table() {
   const { state, dispatch } = useContext(EmployeeContext);
 
   const { employees } = state;
-
 
   const employeesArr = [
     ...new Set(
@@ -30,6 +30,7 @@ function Table() {
 
   return (
     <div className="data-grid-container" data-testid='container-table'>
+      <SearchBar />
       <DataGrid
         columns={columns}
         rows={employeesArr}
