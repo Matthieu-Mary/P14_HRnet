@@ -1,20 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState, useMemo } from "react";
 import { EmployeeContext } from "../../context/EmployeesContext";
 import { DataGrid } from "@mui/x-data-grid";
-import SearchBar from "../../components/SearchBar";
+import TextField from "@mui/material/TextField";
 
 function Table() {
   const { state, dispatch } = useContext(EmployeeContext);
 
   const { employees } = state;
 
-  const employeesArr = [
-    ...new Set(
-      employees.map((employee, index) => {
+  const [searchText, setSearchText] = useState("");
+  
+  const handleSearchTextChange = (event: any) => {
+    setSearchText(event.target.value);
+  };
+
+  const employeesArr = useMemo(() => {
+    return employees
+      .filter(
+        (employee) =>
+          employee.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+          employee.lastName.toLowerCase().includes(searchText.toLowerCase()) ||
+          employee.department.toLowerCase().includes(searchText.toLowerCase()) ||
+          employee.street.toLowerCase().includes(searchText.toLowerCase()) ||
+          employee.city.toLowerCase().includes(searchText.toLowerCase()) ||
+          employee.state.toLowerCase().includes(searchText.toLowerCase()) ||
+          employee.zipCode.toLowerCase().includes(searchText.toLowerCase())
+      )
+      .map((employee, index) => {
         return { ...employee, id: index };
-      })
-    ),
-  ];
+      });
+  }, [employees, searchText]);
 
   const columns = [
     { headerName: "First Name", field: "firstName", width: 100 },
@@ -30,7 +45,13 @@ function Table() {
 
   return (
     <div className="data-grid-container" data-testid='container-table'>
-      <SearchBar />
+      <TextField
+        label="Search"
+        value={searchText}
+        onChange={handleSearchTextChange}
+        variant="outlined"
+        margin="normal"
+      />
       <DataGrid
         columns={columns}
         rows={employeesArr}

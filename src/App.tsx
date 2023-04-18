@@ -1,18 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateEmployee from "./pages/CreateEmployee/CreateEmployee";
 import CurrentEmployees from "./pages/CurrentEmployees/CurrentEmployees";
-import { useReducer } from "react";
-import {
-  EmployeeContext,
-  EmployeeProvider,
-  employeeReducer,
-  initialState,
-} from "./context/EmployeesContext";
+import { EmployeeProvider } from "./context/EmployeesContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 function App() {
-
   return (
     <BrowserRouter>
       <EmployeeProvider>
