@@ -7,7 +7,6 @@ function Table() {
 
   const { employees } = state;
 
-  console.log(employees)
 
   const employeesArr = [
     ...new Set(

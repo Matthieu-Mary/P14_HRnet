@@ -17,7 +17,7 @@ const Form = ({ onSubmit }: Props) => {
     startDate: null,
     street: "",
     city: "",
-    state: "Alabama",
+    state: "AL",
     zipCode: "",
     department: "Sales",
   });

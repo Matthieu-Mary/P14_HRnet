@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { EmployeeProvider, EmployeeContext } from "../context/EmployeesContext";
+import { EmployeeContext } from "../context/EmployeesContext";
 import Table from "../pages/CurrentEmployees/Table";
 import "@testing-library/jest-dom";
 
