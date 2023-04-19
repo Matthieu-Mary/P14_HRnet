@@ -9,7 +9,7 @@ function Modale({onClose}: Props) {
   return (
     <div className='modale'>
         <img src={closeBtn} alt="close button" onClick={onClose} />
-        <p>...</p>
+        <p>Employee added successfully</p>
         <Link to="/employees">View Current Employees</Link>
     </div>
   )
