@@ -3,8 +3,8 @@ import { createContext, useReducer, useEffect } from "react";
 export type Employee = {
   firstName: string;
   lastName: string;
-  dateOfBirth: Date | null;
-  startDate: Date | null;
+  dateOfBirth: any;
+  startDate: any;
   street: string;
   city: string;
   state: string;
