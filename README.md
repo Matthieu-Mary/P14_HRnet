@@ -1,4 +1,5 @@
-https://img.shields.io/badge/React-18.2.0-blue
+[![]https://img.shields.io/badge/React-v18.2.0-blue]
+[https://img.shields.io/badge/Node-v18.15.0-green]
 
 ### Prerequisites
 
