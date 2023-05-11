@@ -14,6 +14,7 @@ function Table() {
     setSearchText(event.target.value);
   };
 
+  // Filter employee list to display searched employees in data table
   const employeesArr = useMemo(() => {
     return employees
       .filter(
@@ -31,6 +32,7 @@ function Table() {
       });
   }, [employees, searchText]);
 
+  // Display columns fields for data table
   const columns = [
     { headerName: "First Name", field: "firstName", width: 100 },
     { headerName: "Last Name", field: "lastName", width: 100 },
